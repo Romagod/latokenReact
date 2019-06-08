@@ -1,0 +1,22 @@
+.test {
+  width: 200px;
+  min-height: 30px;
+
+  border: 1px solid red;
+}
+
+.selectedArea {
+  background-color: gray;
+}
+
+.active {
+  background-color: bisque;
+}
+
+.remove {
+  width: 20px;
+  height: 20px;
+
+  background-color: black;
+  color: white;
+}
