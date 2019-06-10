@@ -17,12 +17,14 @@ export default function inputWrapper(InputComponent, form) {
     constructor(props) {
       super(props)
 
+      // bind actions from store with component
       this.actions = bindActionCreators(InputActions, this.props.dispatch)
 
       this.name = this.props.base.name
       this.base = this.props.base
       this.options = this.props.options || {}
 
+      // create new input in store
       this.actions.addInput(form, this.name)
 
       this.data = this.props.forms[form][this.name]
@@ -39,16 +41,20 @@ export default function inputWrapper(InputComponent, form) {
       this.deleteError = this.deleteError.bind(this)
       this.removeFlashErrors = this.removeFlashErrors.bind(this)
 
+      // listening to submit event
       store.getState().forms[form].submit(this.handlerSubmit)
     }
 
     render() {
+      // additional info render
       let additionalInfo
 
+      // display additional info if it defines
       if (this.props.info) {
         additionalInfo = this.props.info(this.data.value, this.base)
       }
 
+      // render input wrapper
       let input = <div className={`
         ${styles.input}
         ${this.data.status === INPUT_ERROR ? styles.warning : ''}
@@ -70,10 +76,12 @@ export default function inputWrapper(InputComponent, form) {
 
         <div className={styles.inputWrapper}>
 
+          {/*render tooltip*/}
           <Tooltip
             errors={this.data.errors}
           />
 
+          {/*render received input component*/}
           <InputComponent base={this.base}
                           data={this.data}
                           options={this.options}
@@ -94,34 +102,41 @@ export default function inputWrapper(InputComponent, form) {
       return input
     }
 
+    // validate and add to store value, received from child component by change event
     handlerChange(value) {
       this.changeValue(value)
       if (this.props.validators && this.props.validators.change) this.validate(this.props.validators.change, value)
     }
 
+    // validate and add to store value, received from child component by input event
     handlerInput(value) {
       this.changeValue(value)
       if (this.props.validators && this.props.validators.input) this.validate(this.props.validators.input, value)
     }
 
+    // validate and add to store value, received from child component by submit event
     handlerSubmit() {
       let value = this.data.value
       if (this.props.validators && this.props.validators.submit) this.validate(this.props.validators.submit, value)
     }
 
+    // auto validator
     validate(validatorList, value) {
       validatorList.map(validator => {
         let validInfo = validator(value, this.base)
 
         if (validInfo.result) {
+          // delete error if it not more actually relevant and change component status
           this.deleteError(validInfo)
           this.hasErrors() ? this.changeStatus(INPUT_ERROR) : this.changeStatus(INPUT_DEFAULT)
         } else {
+          // add new error
           !!~validInfo.name.indexOf('Required') ? this.addError(validInfo, true) : this.addError(validInfo);
         }
       })
     }
 
+    // remove all flash errors
     removeFlashErrors() {
       for (let key in this.data.errors) {
         if (!!~key.indexOf('flash')) {
@@ -130,12 +145,14 @@ export default function inputWrapper(InputComponent, form) {
       }
     }
 
+    // add new error
     addError(validInfo, flash = false) {
       let errorId = `${this.name}-${validInfo.name}${flash ? '-flash' : ''}`
       this.actions.addError(form, this.name, errorId, validInfo.errorMessage)
       this.changeStatus(INPUT_ERROR)
     }
 
+    // delete error
     deleteError(validInfo) {
       this.actions.deleteError(form, this.name, `${this.name}-${validInfo.name}`)
     }

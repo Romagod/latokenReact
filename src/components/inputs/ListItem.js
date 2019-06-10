@@ -3,6 +3,7 @@ import styles from './ListItem.module.css'
 
 export default class ListItem extends React.Component {
   render() {
+    // render drop list item
     return <li role="dropdown-item"
       className={`
         ${styles.item}
@@ -15,6 +16,7 @@ export default class ListItem extends React.Component {
     </li>
   }
 
+  //change new value by click
   handlerClick (event) {
     event.preventDefault()
     this.props.handlerClick(this.base)

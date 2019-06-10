@@ -3,15 +3,19 @@ import React, { Component } from 'react'
 import styles from './Tooltip.module.css'
 
 export default class InputText extends React.Component {
+  // render tooltip
   render() {
+    // show tooltip if component have errors
     this.isVisible = this.hasErrors()
 
     let result = null
 
+    // construct tooltip
     if (this.isVisible) {
       let id, current
       let idList = Object.keys(this.errors)
 
+      // get last added error
       let lastError = this.errors[idList[idList.length - 1]]
 
       result = <div className={styles.tooltip}>{ lastError }</div>
@@ -20,6 +24,7 @@ export default class InputText extends React.Component {
     return result
   }
 
+  // check component for errors
   hasErrors () {
     return Object.keys(this.errors).length !== 0
   }

@@ -3,6 +3,7 @@ import styles from './Main.module.css'
 
 
 export default class Main extends React.Component {
+  // render main
   render() {
     return (
       <main className={styles.main}>

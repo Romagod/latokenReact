@@ -54,6 +54,7 @@ class Dropdown extends React.Component {
 
     selectedItems.push(inputFilter)
 
+    // render drop list
     let dropList = null
 
     if (this.data.listIsVisible)
@@ -62,6 +63,7 @@ class Dropdown extends React.Component {
       </ul>
 
 
+    // render options for hidden multiple select
     let options = []
 
     this.value.map(item => {
@@ -112,6 +114,7 @@ class Dropdown extends React.Component {
     this.methods.onChange()
   }
 
+  // calculate scroll position
   handlerScroll(event) {
     let clientHeight = event.target.clientHeight
     let scrollTop = event.target.scrollTop
@@ -129,6 +132,7 @@ class Dropdown extends React.Component {
     this.scrollRef.current.style.top = y + 'px'
   }
 
+  // display drop list on input click
   showDropList(event) {
     if (!this.data.listIsVisible) {
       document.addEventListener('click', this.hideDropList)
@@ -136,6 +140,7 @@ class Dropdown extends React.Component {
     }
   }
 
+  // hide scroll list on click to any other element
   hideDropList(event) {
     let role = event.target.getAttribute('role')
 
@@ -152,6 +157,7 @@ class Dropdown extends React.Component {
     }
   }
 
+  // set status for drop's list elements and add it too dropdown value
   listItemClickHandler(item) {
     if (this.countActiveItems() < this.base.max && !item.isActive) {
       this.actions.changeSelectItem(this.base.name, item.id, true)
@@ -166,10 +172,12 @@ class Dropdown extends React.Component {
     }
   }
 
+  // get count selected elements
   countActiveItems() {
     return this.data.activeItems.length
   }
 
+  // highlighting searching substring in value
   spanWrapper(value, search) {
     if (!search) return value
 
@@ -187,6 +195,7 @@ class Dropdown extends React.Component {
     return result
   }
 
+  // set new drop down value on store
   setInputValue(event) {
     this.actions.changeInputData(this.base.name, event.target.value)
   }
@@ -200,7 +209,9 @@ class Dropdown extends React.Component {
     this.methods = this.props.methods
     this.options = this.props.options
 
+    // link input text for filtering
     this.inputRef = React.createRef()
+    // link to drop list scroll
     this.scrollRef = React.createRef()
 
     this.handlerInput = this.handlerInput.bind(this)

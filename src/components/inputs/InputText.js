@@ -4,8 +4,10 @@ import styles from './InputText.module.css'
 
 export default class InputText extends React.Component {
   render() {
+    //  rendered input variable
     let renderingInput
 
+    // define type of rendered input (text or textarea)
     if (this.options.type === 'textarea') {
       renderingInput =
         <textarea role='input'
@@ -32,10 +34,12 @@ export default class InputText extends React.Component {
     return renderingInput
   }
 
+  // save new value in store on input event
   handlerInput(event) {
     this.methods.onInput(event.target.value)
   }
 
+  // save new value in store on change event
   handlerChange(event) {
     this.methods.onChange(event.target.value)
   }

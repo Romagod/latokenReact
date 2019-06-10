@@ -3,7 +3,7 @@ import styles from './SelectItem.module.css'
 
 export default class SelectItem extends React.Component {
   render() {
-    // console.log(this.base.value, this.base.id)
+    // render selected drop list item
     return <li
       role="dropdown-item"
       className={styles.selectItem}>
@@ -17,6 +17,7 @@ export default class SelectItem extends React.Component {
     </li>
   }
 
+  // remove selected item by click
   handlerClick (event) {
     event.stopPropagation()
     event.preventDefault()

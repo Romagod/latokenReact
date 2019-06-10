@@ -48,6 +48,7 @@ export default class FileList extends React.Component {
     </ul>
   }
 
+  // load base64 image from file and set store state
   getBase64(image) {
     let reader = new FileReader()
 
@@ -59,6 +60,7 @@ export default class FileList extends React.Component {
     reader.readAsDataURL(image)
   }
 
+  // remove file click handler
   handlerClick(event) {
     let id = event.target.getAttribute('data-id')
     delete this.images[id]
@@ -76,6 +78,7 @@ export default class FileList extends React.Component {
     this.getBase64 = this.getBase64.bind(this)
     this.handlerClick = this.handlerClick.bind(this)
 
+    // loaded images
     this.images = {}
   }
 }

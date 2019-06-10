@@ -1,11 +1,12 @@
-const publicPath = '/dist/build/';
+// const publicPath = '/dist/build/';
+const publicPath = './';
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
   entry: './index.js',
   output: {
-    path: path.join(__dirname, '/dist/assets'),
+    path: path.join(__dirname, './'),
     filename: '[name].bundle.js',
     publicPath: publicPath,
     sourceMapFilename: '[name].map'

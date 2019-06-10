@@ -34,6 +34,7 @@ export const store = createStore(reducer)
 
 export default class App extends Component {
   render() {
+    // create inputs element based on input wrapper
     let InputTextField = InputWrapper(InputText, 'projectform')
     let InputDropdown = InputWrapper(Dropdown, 'projectform')
     let InputFileLoader = InputWrapper(FileLoader, 'projectform')
@@ -276,7 +277,6 @@ export default class App extends Component {
 
   constructor (props) {
     super(props)
-    console.log('window')
-    window.getState = store.getState
+
   }
 }

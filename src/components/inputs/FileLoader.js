@@ -11,7 +11,9 @@ export default class FileLoader extends React.Component {
   render() {
     this.constructFormData()
 
+
     return <div className={styles.wrapper}>
+      {/*render drop area for if value container is not full*/}
       {this.options.hideOnFull && Object.keys(this.value).length >= this.base.max ? '' :
         <div role='input'
              className={styles.fileloader}
@@ -21,18 +23,21 @@ export default class FileLoader extends React.Component {
              onDrop={this.handlerDrop}>
           <div className={styles.info}>
 
+            {/*render icon on success load */}
             <div className={`
             ${styles.icon}
             ${this.data.status === INPUT_SUCCESS ? styles.iconSuccess : ''} 
           `}>
             </div>
 
+            {/*render placeholder*/}
             <div className={styles.placeholder}>
               {this.data.status === INPUT_SUCCESS ? 'Uploaded' : this.options.placeholder}
             </div>
 
           </div>
 
+          {/*render reset button if file loader option is not multiple*/}
           {this.base.multiple || !Object.keys(this.value).length ? '' :
             <div onClick={this.handlerRemove}
                  className={styles.reset}
@@ -40,6 +45,8 @@ export default class FileLoader extends React.Component {
           }
         </div>
       }
+
+      {/*render file list if file loader has diplayFiles option*/}
       {!this.options.displayFiles ? '' :
         <FileList
           base={''}
@@ -51,6 +58,7 @@ export default class FileLoader extends React.Component {
         />
       }
 
+      {/*render hidden file loader input*/}
       <input type="file"
              name={this.base.name}
              ref={this.refInputFile}
@@ -60,23 +68,28 @@ export default class FileLoader extends React.Component {
 
   }
 
+  // prevent to default some drag events
   prevent(event) {
     event.preventDefault()
     event.stopPropagation()
   }
 
+  // handler drop event
   handlerDrop(event) {
     event.preventDefault()
     event.stopPropagation()
 
+    // exit if count limit exceeded
     if (!this.base.multiple && Object.keys(this.value).length >= 1 ||
       Object.keys(this.value).length >= this.base.max) {
       return
     }
 
+    // init data transfer for file load
     let dt = event.dataTransfer
     let files = dt.files
 
+    // validation input file
     let mimeTypeCheck, fileSizeCheck, maxFileCountCheck
 
     ;[].map.call(files, file => {
@@ -109,16 +122,18 @@ export default class FileLoader extends React.Component {
     })
   }
 
+  // add new file to store
   handlerChange(file) {
     file.id = Math.random().toString(16).slice(2)
     this.value[file.id] = file
     this.methods.onChange(this.value)
-
+    // change component status
     if (this.options.highlightingOnSuccess) {
       this.methods.changeStatus(INPUT_SUCCESS)
     }
   }
 
+  // delete all loaded elements or delete single element by id
   handlerRemove(id) {
     if (typeof id === 'object') {
       this.value = {}
@@ -126,13 +141,16 @@ export default class FileLoader extends React.Component {
       delete this.value[id]
     }
 
+    // change component status
     if (this.options.highlightingOnSuccess) {
       this.methods.changeStatus(INPUT_DEFAULT)
     }
 
+    // delete value from store
     this.methods.onChange(this.value)
   }
 
+  // construct data for form
   constructFormData () {
     let dt = new DataTransfer()
 
@@ -157,10 +175,13 @@ export default class FileLoader extends React.Component {
     this.handlerRemove = this.handlerRemove.bind(this)
     this.constructFormData  = this.constructFormData .bind(this)
 
+    // link to hidden input file
     this.refInputFile = React.createRef()
 
+    // init default value
     this.value = {}
 
+    // init validators
     this.check = {
       mimeType: validatorMimeTypes({}),
       size: validatorMaxFileSize({}),
