@@ -1,0 +1,63 @@
+body,
+html {
+  margin: 0;
+
+  font-family: var(--font);
+  font-size: 14px;
+
+  background-color: var(--light-color);
+
+  --font:'Fira Sans', sans-serif;
+
+  --main-color: rgb(64, 73, 96);
+  --inactive-color-08: #666d80;
+  --inactive-color-06: #8c92a0;
+  --inactive-color-05: #a0a4b0;
+  --inactive-color-04: #b3b6bf;
+  --inactive-color-03: #c6c8cf;
+  --inactive-color-02: #d9dbdf;
+  --inactive-color-015: #e2e4e7;
+  --inactive-color-01: #ecedef;
+  --light-color: #fbfbfc;
+  --link-color: #5495aa;
+  --success-color: #5ec16f;
+  --success-color-07: #8ed49a3d;
+  --warning-color: #d56161;
+  --warning-color-07: #e29090;
+
+  --content-width: 1180px;
+
+}
+
+::placeholder {
+  opacity: 0.3;
+}
+
+input {
+  font-family: var(--font);
+}
+
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/fira-sans/fira-sans-v9-latin-regular.woff2') format('woff2'),
+  url('../fonts/fira-sans/fira-sans-v9-latin-regular.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/fira-sans/fira-sans-v9-latin-500.woff2') format('woff2'),
+  url('../fonts/fira-sans/fira-sans-v9-latin-500.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/fira-sans/fira-sans-v9-latin-700.woff2') format('woff2'),
+  url('../fonts/fira-sans/fira-sans-v9-latin-700.woff') format('woff')
+}

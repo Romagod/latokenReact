@@ -1,0 +1,29 @@
+.selectItem {
+  display: flex;
+  align-items: center;
+
+  height: 32px;
+
+  padding: 0 8px;
+  margin: 0 9px 8px 0;
+
+  border: 1px solid var(--inactive-color-03);
+  border-radius: 4px;
+}
+
+.selectItem:nth-last-child(2) {
+  margin-right: 0;
+}
+
+.caption {
+  margin: 0 8px 0 0;
+}
+
+.removeButton {
+  cursor: pointer;
+
+  width: 11px;
+  height: 13px;
+
+  background: url('../../assets/images/basket.svg') no-repeat 50% 50%;
+}

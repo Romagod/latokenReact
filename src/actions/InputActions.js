@@ -52,3 +52,12 @@ export function changeStatus(form, name, status) {
     status
   }
 }
+
+export function changeOption(form, name, option) {
+  return {
+    type: types.CHANGE_OPTION,
+    form,
+    name,
+    option
+  }
+}

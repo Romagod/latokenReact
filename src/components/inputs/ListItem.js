@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import styles from './Dropdown.module.css'
+import styles from './ListItem.module.css'
 
 export default class ListItem extends React.Component {
   render() {
     return <li role="dropdown-item"
-      className={this.base.isActive ? styles.active : null}
+      className={`
+        ${styles.item}
+        ${this.base.isActive ? styles.active : null}`
+      }
       data-id={this.base.id}
       onClick={this.handlerClick}
       >
@@ -13,8 +16,8 @@ export default class ListItem extends React.Component {
   }
 
   handlerClick (event) {
-    // event.preventDefault()
-    this.props.clickHandler(this.base)
+    event.preventDefault()
+    this.props.handlerClick(this.base)
   }
 
   constructor(props) {

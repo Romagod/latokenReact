@@ -1,0 +1,61 @@
+.input {
+  width: 100%;
+  margin: 24px 0 0 0;
+}
+
+form + .input {
+  margin: 0;
+}
+
+.inputWithoutHeader:not(:first-child) {
+  margin: 8px 0 0 0;
+}
+
+.inputInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 2.7em;
+
+  font-size: 12px;
+}
+
+.title {
+  color: var(--inactive-color-08);
+}
+
+.title a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.addInfo {
+  color: var(--inactive-color-03);
+}
+
+.warning .addInfo,
+.warning .title {
+  color: var(--warning-color);
+}
+
+form .warning [role=input] {
+  border-color: var(--warning-color);
+}
+
+form .success [role=input] {
+  background-color: var(--success-color-07);
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.required {
+  color: var(--warning-color);
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}

@@ -42,16 +42,19 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader?modules=true'],
-        // include: /flexboxgrid/
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|svg|gif)$/,
         use: ['file-loader']
       },
       {
         test: /\.js|.jsx?$/,
         exclude: /(node_modules)/,
         loaders: ["babel-loader"]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: ['file-loader']
       }]
   },
 }

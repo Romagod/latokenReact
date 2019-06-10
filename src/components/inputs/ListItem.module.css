@@ -1,0 +1,15 @@
+.active {
+  background-color: var(--inactive-color-01);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+
+  height: 48px;
+
+  padding: 0 1em;
+
+  cursor: pointer;
+}
+

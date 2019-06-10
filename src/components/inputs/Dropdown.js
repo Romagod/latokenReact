@@ -1,40 +1,39 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 import styles from './Dropdown.module.css'
 
 import ListItem from './ListItem'
 import SelectItem from './SelectItem'
 
-import * as DropDownActions from '../actions/DropDownActions'
+import * as DropDownActions from '../../actions/DropDownActions'
 
 class Dropdown extends React.Component {
   render() {
     let dropItems = []
 
     // render input:text field
-    this.inputFilter = <input
+    let inputFilter = <input
+      role='dropdown'
+      className={styles.filterInput}
       ref={this.inputRef}
-      role="dropdown"
-      type="test"
-      key="input"
+      key='inputFilter'
       onInput={this.setInputValue}
-      onBlur={this.inputBlurHandler}
     />
 
     // render drop list items
-    let filtredValue
+    let filteredValue
 
     for (let id in this.data.items) {
-      filtredValue = this.spanWrapper(this.data.items[id].value, this.data.inputValue)
-      if (!filtredValue) continue
+      filteredValue = this.spanWrapper(this.data.items[id].value, this.data.inputValue)
+      if (!filteredValue) continue
 
       let newItem = <ListItem
         key={id}
         base={this.data.items[id]}
-        value={filtredValue}
-        clickHandler={this.listItemClickHandler}
+        value={filteredValue}
+        handlerClick={this.listItemClickHandler}
       />
 
       dropItems.push(newItem)
@@ -48,49 +47,96 @@ class Dropdown extends React.Component {
         <SelectItem
           key={item.id}
           base={this.data.items[item.id]}
-          clickHandler={this.listItemClickHandler}
+          handlerClick={this.listItemClickHandler}
         />
       )
     })
 
-    selectedItems.push(this.inputFilter)
+    selectedItems.push(inputFilter)
 
     let dropList = null
 
     if (this.data.listIsVisible)
-      dropList = <ul className={ styles.test }>
-      { dropItems }
-    </ul>
+      dropList = <ul className={styles.droplist}>
+        {dropItems}
+      </ul>
+
+
+    let options = []
+
+    this.value.map(item => {
+      options.push(<option value={item.value} key={item.id}>1</option>)
+    })
+
 
     return <div
-      role={'dropdown'}>
+      role={'dropdown'}
+      className={styles.componentWrapper}>
       <label
-         onClick={this.showDropList}>
-        <ul className={ styles.test }>
-          { selectedItems }
+        onClick={this.showDropList}>
+        <ul role='input'
+            className={styles.inputWrapper}>
+          {selectedItems}
+          {this.value.length || this.data.listIsVisible ? '' :
+            <li className={styles.placeholder}>{this.base.placeholder}</li>}
         </ul>
-        { dropList }
+        {
+          !this.data.listIsVisible ? '' :
+            <div className={styles.droplistWrapper}
+                 onScroll={this.handlerScroll}>
+              <div
+                ref={this.scrollRef}
+                className={styles.scroller}>
+              </div>
+              {dropList}
+            </div>
+        }
+
+        <select multiple key={this.name}
+                value={this.value.map(item => item.value)}
+                name={this.base.name}
+                onChange={() => 0}
+                className={styles.hiddenSelect}>
+          {options}
+        </select>
+
       </label>
-      </div>
+    </div>
   }
 
   handlerInput(event) {
-    this.props.onInput(event.target.value)
+    this.methods.onInput(event.target.value)
   }
 
   handlerChange(event) {
-    this.props.onChange()
+    this.methods.onChange()
   }
 
+  handlerScroll(event) {
+    let clientHeight = event.target.clientHeight
+    let scrollTop = event.target.scrollTop
+    let scrollHeight = event.target.scrollHeight
+    let scroll = this.scrollRef.current
+    let scrollMargin = parseInt(window.getComputedStyle(scroll)['margin-top'])
+    let scrollDelta = Math.floor(scrollTop) / (scrollHeight - clientHeight)
 
-  showDropList (event) {
+    this.setScrollPosition(
+      (clientHeight - scroll.clientHeight - scrollMargin * 2) * scrollDelta
+    )
+  }
+
+  setScrollPosition(y) {
+    this.scrollRef.current.style.top = y + 'px'
+  }
+
+  showDropList(event) {
     if (!this.data.listIsVisible) {
       document.addEventListener('click', this.hideDropList)
       this.actions.changeListVisibility(this.base.name, true)
     }
   }
 
-  hideDropList (event) {
+  hideDropList(event) {
     let role = event.target.getAttribute('role')
 
     // clicking to delete button don't change drop list visibility
@@ -104,28 +150,27 @@ class Dropdown extends React.Component {
       this.actions.changeInputData(this.base.name, '')
       this.inputRef.current.value = ''
     }
-
   }
 
-  listItemClickHandler (item) {
+  listItemClickHandler(item) {
     if (this.countActiveItems() < this.base.max && !item.isActive) {
       this.actions.changeSelectItem(this.base.name, item.id, true)
       this.value.push(item)
-      this.props.onInput(this.value)
-    } else if (this.countActiveItems()  >= this.base.max && !item.isActive) {
+      this.methods.onInput(this.value)
+    } else if (this.countActiveItems() >= this.base.max && !item.isActive) {
       return
     } else if (item.isActive) {
       this.actions.changeSelectItem(this.base.name, item.id, false)
       this.value = this.value.filter(_item => _item !== item)
-      this.props.onInput(this.value)
+      this.methods.onInput(this.value)
     }
   }
 
-  countActiveItems () {
+  countActiveItems() {
     return this.data.activeItems.length
   }
 
-  spanWrapper (value, search) {
+  spanWrapper(value, search) {
     if (!search) return value
 
     let startPosition = value.toLowerCase().indexOf(search.toLowerCase())
@@ -137,21 +182,13 @@ class Dropdown extends React.Component {
     let rightsSide = value.substr(startPosition + offset)
     let selectedArea = <span className={styles.selectedArea}>{value.substr(startPosition, offset)}</span>
 
-    let result = <div role="dropdown-item">{ leftSide }{ selectedArea }{ rightsSide }</div>
+    let result = <div role="dropdown-item">{leftSide}{selectedArea}{rightsSide}</div>
 
     return result
   }
 
-  setInputValue (event) {
+  setInputValue(event) {
     this.actions.changeInputData(this.base.name, event.target.value)
-  }
-
-  inputBlurHandler (event) {
-    // if (!this.data.listIsVisible) {
-    //   this.actions.changeListVisibility(this.base.name, false)
-    //   this.actions.changeInputData(this.base.name, '')
-    //   event.target.value = ''
-    // }
   }
 
   constructor(props) {
@@ -160,18 +197,22 @@ class Dropdown extends React.Component {
 
     this.actions = bindActionCreators(DropDownActions, this.props.dispatch)
     this.data = this.props.dropdown[this.base.name]
+    this.methods = this.props.methods
+    this.options = this.props.options
 
     this.inputRef = React.createRef()
+    this.scrollRef = React.createRef()
 
     this.handlerInput = this.handlerInput.bind(this)
     this.handlerChange = this.handlerChange.bind(this)
     this.countActiveItems = this.countActiveItems.bind(this)
     this.spanWrapper = this.spanWrapper.bind(this)
     this.setInputValue = this.setInputValue.bind(this)
-    this.inputBlurHandler = this.inputBlurHandler.bind(this)
     this.showDropList = this.showDropList.bind(this)
     this.hideDropList = this.hideDropList.bind(this)
     this.listItemClickHandler = this.listItemClickHandler.bind(this)
+    this.handlerScroll = this.handlerScroll.bind(this)
+    this.setScrollPosition = this.setScrollPosition.bind(this)
 
     this.value = []
   }

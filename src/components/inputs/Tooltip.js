@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import styles from './Tooltip.module.css'
+
 export default class InputText extends React.Component {
   render() {
     this.isVisible = this.hasErrors()
@@ -12,7 +14,7 @@ export default class InputText extends React.Component {
 
       let lastError = this.errors[idList[idList.length - 1]]
 
-      result = <div>{ lastError }</div>
+      result = <div className={styles.tooltip}>{ lastError }</div>
     }
 
     return result

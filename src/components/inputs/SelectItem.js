@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import styles from './Dropdown.module.css'
+import styles from './SelectItem.module.css'
 
 export default class SelectItem extends React.Component {
   render() {
     // console.log(this.base.value, this.base.id)
-    return <li role="dropdown-item">
-
-      { this.base.value }
+    return <li
+      role="dropdown-item"
+      className={styles.selectItem}>
+      <div className={styles.caption}>
+        { this.base.value }
+      </div>
       <div
         role="dropdown-remove-btn"
-        className={styles.remove}
-        onClick={this.handlerClick}>
-        R
-      </div>
+        className={styles.removeButton}
+        onClick={this.handlerClick}/>
     </li>
   }
 
@@ -20,7 +21,7 @@ export default class SelectItem extends React.Component {
     event.stopPropagation()
     event.preventDefault()
 
-    this.props.clickHandler(this.base)
+    this.props.handlerClick(this.base)
   }
 
 

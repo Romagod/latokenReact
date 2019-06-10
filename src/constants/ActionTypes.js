@@ -1,4 +1,8 @@
-export const SET_ACTIVE = 'SET_ACTIVE'
+export const MENU_SET_ACTIVE = 'MENU_SET_ACTIVE'
+export const MENU_ADD_ITEM = 'MENU_ADD_ITEM'
+export const MENU_INIT = 'MENU_INIT'
+
+export const USER_SET = 'USER_SET'
 
 export const ADD_INPUT = 'ADD_INPUT'
 
@@ -7,6 +11,7 @@ export const CHANGE_STATUS = 'CHANGE_STATUS'
 export const ADD_ERROR = 'ADD_ERROR'
 export const ADD_FORM = 'ADD_FORM'
 export const DELETE_ERROR = 'DELETE_ERROR'
+export const CHANGE_OPTION = 'CHANGE_OPTION'
 
 export const ADD_ITEM = 'ADD_ITEM'
 export const ADD_DROPLIST = 'ADD_DROPLIST'

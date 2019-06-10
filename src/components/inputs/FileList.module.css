@@ -1,0 +1,62 @@
+.fileList {
+  width: 100%;
+
+  margin: 8px 0 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.item {
+  box-sizing: border-box;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  height: 48px;
+
+  border-bottom: 1px solid var(--inactive-color-01);
+}
+
+.fileName {
+  margin: 0 0 0 16px;
+
+  color: var(--inactive-color-06);
+  font-size: 12px;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 54px;
+  height: 36px;
+}
+
+.image {
+  width: 54px;
+  height: 36px;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+}
+
+.imageStub {
+  width: 24px;
+  height: 24px;
+}
+
+.removeItem {
+  position: absolute;
+  right: 20px;
+
+  width: 11px;
+  height: 13px;
+
+  background: url('../../assets/images/basket.svg');
+
+  cursor: pointer;
+}

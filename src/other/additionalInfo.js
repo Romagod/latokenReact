@@ -1,8 +1,8 @@
 export function infoSymbolsCount(title) {
-  return function (value, base) {
+  return function (value, options) {
     return {
       title: title,
-      info: `${value.length}/${base.max}`
+      info: `${value.length}/${options.max}`
     }
   }
 }
@@ -16,17 +16,11 @@ export function maxItems(title) {
   }
 }
 
-
-export function infoFileNames(title = '') {
-  return function (value, base) {
-    let result = ''
-
-    // if (typeof value === 'Object')
-    // value.map(item => result += item.name)
-
+export function infoStatic(data) {
+  return function () {
     return {
-      title: title,
-      info: result
+      title: data.title || '',
+      info: data.info || ''
     }
   }
 }

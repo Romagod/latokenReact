@@ -1,0 +1,33 @@
+.menu {
+  width: 180px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.menu .menu {
+  padding: 0 0 0 1em;
+  font-size: 12px;
+}
+
+.menu .item {
+  padding: 1.15em 0;
+
+  cursor: pointer;
+
+  color: var(--inactive-color-04);
+}
+
+.menu .menu .item {
+  padding: 0.75em 0;
+}
+
+.menu .menu .item:hover {
+  color: var(--inactive-color-06);
+}
+
+.menu .itemActive {
+  color: var(--main-color);
+}

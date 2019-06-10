@@ -1,41 +1,51 @@
-export function validatorLength (options) {
+export function validatorLength (errorMessage) {
   return function (value, base) {
     return {
       result: Object.keys(value).length <= base.max,
       name: 'validatorLength',
-      errorMessage: options.errorMessage || 'Field value is too long'
+      errorMessage: errorMessage || 'Field value is too long'
     }
   }
 }
 
-export function validatorFalse (options = {}) {
+export function validatorSiteUrl (errorMessage) {
+  console.log(this)
   return function (value) {
     return {
-      result: false,
-      name: 'validatorFalse',
-      errorMessage: options.errorMessage || 'Test false validator'
+      result: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/.test(value) || value === '',
+      name: 'validatorSiteUrl',
+      errorMessage: errorMessage || 'It now valid site URL'
     }
   }
 }
 
-export function validatorTest (options = {}) {
+export function validatorVideoUrl (errorMessage) {
+  console.log(this)
   return function (value) {
-    console.log('TEST VALIDATOR')
     return {
-      result: value === 'true',
-      name: 'validatorTest',
-      errorMessage: options.errorMessage || 'Test validator'
+      result: /^(https?:\/\/)?((www\.)?(youtube|vimeo)\.com|youtu\.?be)\/.+$/.test(value) || value === '',
+      name: 'validatorSiteUrl',
+      errorMessage: errorMessage || 'It now valid site URL'
     }
   }
 }
 
-
-export function validatorRequired (options = {}) {
+export function validatorRequired (errorMessage) {
   return function (value) {
     return {
       result: !!Object.keys(value).length,
       name: 'validatorRequired',
-      errorMessage: options.errorMessage || 'Field is required'
+      errorMessage: errorMessage || 'Field is required'
+    }
+  }
+}
+
+export function validatorTrue () {
+  return function (value, base) {
+    return {
+      result: true,
+      name: 'validatorTrue',
+      errorMessage: ''
     }
   }
 }

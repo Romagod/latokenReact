@@ -1,0 +1,8 @@
+.main {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+
+  max-width: 580px;
+  width: 50%;
+}
