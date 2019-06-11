@@ -9,7 +9,6 @@ export function validatorLength (errorMessage) {
 }
 
 export function validatorSiteUrl (errorMessage) {
-  console.log(this)
   return function (value) {
     return {
       result: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/.test(value) || value === '',
@@ -20,7 +19,6 @@ export function validatorSiteUrl (errorMessage) {
 }
 
 export function validatorVideoUrl (errorMessage) {
-  console.log(this)
   return function (value) {
     return {
       result: /^(https?:\/\/)?((www\.)?(youtube|vimeo)\.com|youtu\.?be)\/.+$/.test(value) || value === '',

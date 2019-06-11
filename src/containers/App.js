@@ -155,32 +155,6 @@ export default class App extends Component {
                   }}
                   info={additionalInfo.maxItems('Industries')}
                 />
-
-                <InputFileLoader
-                  base={{
-                    name: 'image-loader',
-                    id: 'image-loader',
-                    multiple: true,
-                    validTypes: ['image/png', 'image/jpeg'],
-                    required: true,
-                    max: 8,
-                    maxFileSize: 5242880
-                  }}
-                  options={{
-                    highlightingOnSuccess: false,
-                    placeholder: 'PNG or JPG, min 800×600 px, up to 5 Mb',
-                    displayFiles: true,
-                    hideOnFull: true // !!
-                  }}
-                  validators={{
-                    submit: [validatorRequired()]
-                  }}
-                  info={additionalInfo.infoStatic({
-                    title: 'Images about project',
-                    info: 'Max 8, at least one required'
-                  })}
-                />
-
                 <div className={styles.documentWrapper}>
 
                   <InputFileLoader
@@ -232,6 +206,32 @@ export default class App extends Component {
 
                 </div>
 
+                <InputFileLoader
+                  base={{
+                    name: 'image-loader',
+                    id: 'image-loader',
+                    multiple: true,
+                    validTypes: ['image/png', 'image/jpeg'],
+                    required: true,
+                    max: 8,
+                    maxFileSize: 5242880
+                  }}
+                  options={{
+                    highlightingOnSuccess: false,
+                    placeholder: 'PNG or JPG, min 800×600 px, up to 5 Mb',
+                    displayFiles: true,
+                    hideOnFull: true // !!
+                  }}
+                  validators={{
+                    submit: [validatorRequired()]
+                  }}
+                  info={additionalInfo.infoStatic({
+                    title: 'Images about project',
+                    info: 'Max 8, at least one required'
+                  })}
+                />
+
+
                 <InputTextField
                   base={{
                     name: 'video-1',
@@ -277,6 +277,6 @@ export default class App extends Component {
 
   constructor (props) {
     super(props)
-
+    console.log('qweqweqwe')
   }
 }

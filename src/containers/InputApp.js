@@ -163,7 +163,6 @@ export default function inputWrapper(InputComponent, form) {
     }
 
     changeStatus(status, external = false) {
-      console.log(status,this.data.status,  external)
       if (!external && status === INPUT_SUCCESS && this.data.status === INPUT_DEFAULT) {
         return
       }
