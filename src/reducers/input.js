@@ -1,4 +1,4 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes'
 
 const initialState = {
 
@@ -53,6 +53,6 @@ export default function input(state = initialState, action) {
       return result
 
     default:
-      return state;
+      return state
   }
 }

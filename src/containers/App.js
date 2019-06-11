@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { createStore, combineReducers } from 'redux';
-import {Provider} from 'react-redux';
+import React, { Component } from 'react'
+import { createStore, combineReducers } from 'redux'
+import {Provider} from 'react-redux'
 
 require("../assets/css/style.css")
 
@@ -12,7 +12,7 @@ import {
   validatorVideoUrl
 } from "../other/validators"
 
-import * as reducers from '../reducers';
+import * as reducers from '../reducers'
 import * as additionalInfo from '../other/additionalInfo'
 
 import MainNavApp from "./MainNavApp"
@@ -76,6 +76,7 @@ export default class App extends Component {
                     max: 50
                   }}
                   options={{
+                    type: 'text'
                   }}
                   validators={{
                     input: [validatorLength()],
@@ -93,7 +94,7 @@ export default class App extends Component {
                     max: 40
                   }}
                   options={{
-                    type: 'text' // !!
+                    type: 'text'
                   }}
                   validators={{
                     input: [validatorLength()],
@@ -157,52 +158,52 @@ export default class App extends Component {
                 />
                 <div className={styles.documentWrapper}>
 
-                {/*<InputFileLoader*/}
-                {/*  base={{*/}
-                {/*    name: 'pdf-loader-1',*/}
-                {/*    id: 'pdf-loader-1',*/}
-                {/*    multiple: false,*/}
-                {/*    validTypes: ['application/pdf'],*/}
-                {/*    max: 3,*/}
-                {/*    maxFileSize: 52428800*/}
-                {/*  }}*/}
-                {/*  options={{*/}
-                {/*    highlightingOnSuccess: true,*/}
-                {/*    placeholder: 'PDF, up to 50Mb',*/}
-                {/*    displayFiles: false,*/}
-                {/*    hideOnFull: false*/}
-                {/*  }}*/}
-                {/*  validators={{*/}
-                {/*    change: [validatorTrue()]*/}
-                {/*  }}*/}
-                {/*  info={additionalInfo.infoStatic({*/}
-                {/*    title: 'Whitepaper'*/}
-                {/*  })}*/}
-                {/*/>*/}
+                <InputFileLoader
+                  base={{
+                    name: 'pdf-loader-1',
+                    id: 'pdf-loader-1',
+                    multiple: false,
+                    validTypes: ['application/pdf'],
+                    max: 3,
+                    maxFileSize: 52428800
+                  }}
+                  options={{
+                    highlightingOnSuccess: true,
+                    placeholder: 'PDF, up to 50Mb',
+                    displayFiles: false,
+                    hideOnFull: false
+                  }}
+                  validators={{
+                    change: [validatorTrue()]
+                  }}
+                  info={additionalInfo.infoStatic({
+                    title: 'Whitepaper'
+                  })}
+                />
 
-                {/*  <InputFileLoader*/}
-                {/*    base={{*/}
-                {/*      name: 'pdf-loader-2',*/}
-                {/*      id: 'pdf-loader-2',*/}
-                {/*      multiple: false,*/}
-                {/*      validTypes: ['application/pdf'],*/}
-                {/*      required: true,*/}
-                {/*      max: 3,*/}
-                {/*      maxFileSize: 52428800*/}
-                {/*    }}*/}
-                {/*    options={{*/}
-                {/*      highlightingOnSuccess: true,*/}
-                {/*      placeholder: 'PDF, up to 50Mb',*/}
-                {/*      displayFiles: false,*/}
-                {/*      hideOnFull: false // !!*/}
-                {/*    }}*/}
-                {/*    validators={{*/}
-                {/*      submit: [validatorRequired('No pitch deck? Do you even know where you are?')]*/}
-                {/*    }}*/}
-                {/*    info={additionalInfo.infoStatic({*/}
-                {/*      title: <span>Pitch deck (see <a href="#">template</a>)</span>*/}
-                {/*    })}*/}
-                {/*  />*/}
+                  <InputFileLoader
+                    base={{
+                      name: 'pdf-loader-2',
+                      id: 'pdf-loader-2',
+                      multiple: false,
+                      validTypes: ['application/pdf'],
+                      required: true,
+                      max: 3,
+                      maxFileSize: 52428800
+                    }}
+                    options={{
+                      highlightingOnSuccess: true,
+                      placeholder: 'PDF, up to 50Mb',
+                      displayFiles: false,
+                      hideOnFull: false
+                    }}
+                    validators={{
+                      submit: [validatorRequired('No pitch deck? Do you even know where you are?')]
+                    }}
+                    info={additionalInfo.infoStatic({
+                      title: <span>Pitch deck (see <a href="#">template</a>)</span>
+                    })}
+                  />
 
                 </div>
 
@@ -220,7 +221,7 @@ export default class App extends Component {
                     highlightingOnSuccess: false,
                     placeholder: 'PNG or JPG, min 800×600 px, up to 5 Mb',
                     displayFiles: true,
-                    hideOnFull: true // !!
+                    hideOnFull: true
                   }}
                   validators={{
                     submit: [validatorRequired()]
@@ -272,10 +273,12 @@ export default class App extends Component {
 
         </Provider>
       </div>
-    );
+    )
   }
 
   constructor (props) {
     super(props)
+
+    window.store = store.getState
   }
 }

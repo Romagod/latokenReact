@@ -1,1 +1,1 @@
-export { default as menuItems } from './MainNavActions';
+export { default as menuItems } from './MainNavActions'

@@ -12,7 +12,6 @@ export default class InputText extends React.Component {
 
     // construct tooltip
     if (this.isVisible) {
-      let id, current
       let idList = Object.keys(this.errors)
 
       // get last added error

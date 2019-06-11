@@ -131,7 +131,7 @@ export default function inputWrapper(InputComponent, form) {
           this.hasErrors() ? this.changeStatus(INPUT_ERROR) : this.changeStatus(INPUT_DEFAULT)
         } else {
           // add new error
-          !!~validInfo.name.indexOf('Required') ? this.addError(validInfo, true) : this.addError(validInfo);
+          !!~validInfo.name.indexOf('Required') ? this.addError(validInfo, true) : this.addError(validInfo)
         }
       })
     }

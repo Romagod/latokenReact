@@ -1,4 +1,4 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes'
 
 const initialState = {
   activeItem: '1-1',
@@ -33,7 +33,7 @@ export default function menu(state = {}, action) {
       return result
 
     default:
-      return state;
+      return state
   }
 }
 
