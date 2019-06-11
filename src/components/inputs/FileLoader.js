@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 import styles from './FileLoader.module.css'
 
@@ -10,7 +10,6 @@ import FileList from "./FileList"
 export default class FileLoader extends React.Component {
   render() {
     this.constructFormData()
-
 
     return <div className={styles.wrapper}>
       {/*render drop area for if value container is not full*/}
@@ -46,7 +45,7 @@ export default class FileLoader extends React.Component {
         </div>
       }
 
-      {/*render file list if file loader has diplayFiles option*/}
+      {/*render file list if file loader has displayFiles option*/}
       {!this.options.displayFiles ? '' :
         <FileList
           base={''}
@@ -158,13 +157,14 @@ export default class FileLoader extends React.Component {
       dt.items.add(this.value[key])
     }
 
-    if (Object.keys(dt.files).length) {
+    if (dt.files && Object.keys(dt.files).length) {
       this.refInputFile.current.files = dt.files
     }
   }
 
   constructor(props) {
     super(props)
+
     this.base = this.props.base
     this.data = this.props.data
     this.options = this.props.options

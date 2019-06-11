@@ -157,52 +157,52 @@ export default class App extends Component {
                 />
                 <div className={styles.documentWrapper}>
 
-                  <InputFileLoader
-                    base={{
-                      name: 'pdf-loader-1',
-                      id: 'pdf-loader-1',
-                      multiple: false,
-                      validTypes: ['application/pdf'],
-                      max: 3,
-                      maxFileSize: 52428800
-                    }}
-                    options={{
-                      highlightingOnSuccess: true,
-                      placeholder: 'PDF, up to 50Mb',
-                      displayFiles: false,
-                      hideOnFull: false
-                    }}
-                    validators={{
-                      change: [validatorTrue()]
-                    }}
-                    info={additionalInfo.infoStatic({
-                      title: 'Whitepaper'
-                    })}
-                  />
+                {/*<InputFileLoader*/}
+                {/*  base={{*/}
+                {/*    name: 'pdf-loader-1',*/}
+                {/*    id: 'pdf-loader-1',*/}
+                {/*    multiple: false,*/}
+                {/*    validTypes: ['application/pdf'],*/}
+                {/*    max: 3,*/}
+                {/*    maxFileSize: 52428800*/}
+                {/*  }}*/}
+                {/*  options={{*/}
+                {/*    highlightingOnSuccess: true,*/}
+                {/*    placeholder: 'PDF, up to 50Mb',*/}
+                {/*    displayFiles: false,*/}
+                {/*    hideOnFull: false*/}
+                {/*  }}*/}
+                {/*  validators={{*/}
+                {/*    change: [validatorTrue()]*/}
+                {/*  }}*/}
+                {/*  info={additionalInfo.infoStatic({*/}
+                {/*    title: 'Whitepaper'*/}
+                {/*  })}*/}
+                {/*/>*/}
 
-                  <InputFileLoader
-                    base={{
-                      name: 'pdf-loader-2',
-                      id: 'pdf-loader-2',
-                      multiple: false,
-                      validTypes: ['application/pdf'],
-                      required: true,
-                      max: 3,
-                      maxFileSize: 52428800
-                    }}
-                    options={{
-                      highlightingOnSuccess: true,
-                      placeholder: 'PDF, up to 50Mb',
-                      displayFiles: false,
-                      hideOnFull: false // !!
-                    }}
-                    validators={{
-                      submit: [validatorRequired('No pitch deck? Do you even know where you are?')]
-                    }}
-                    info={additionalInfo.infoStatic({
-                      title: <span>Pitch deck (see <a href="#">template</a>)</span>
-                    })}
-                  />
+                {/*  <InputFileLoader*/}
+                {/*    base={{*/}
+                {/*      name: 'pdf-loader-2',*/}
+                {/*      id: 'pdf-loader-2',*/}
+                {/*      multiple: false,*/}
+                {/*      validTypes: ['application/pdf'],*/}
+                {/*      required: true,*/}
+                {/*      max: 3,*/}
+                {/*      maxFileSize: 52428800*/}
+                {/*    }}*/}
+                {/*    options={{*/}
+                {/*      highlightingOnSuccess: true,*/}
+                {/*      placeholder: 'PDF, up to 50Mb',*/}
+                {/*      displayFiles: false,*/}
+                {/*      hideOnFull: false // !!*/}
+                {/*    }}*/}
+                {/*    validators={{*/}
+                {/*      submit: [validatorRequired('No pitch deck? Do you even know where you are?')]*/}
+                {/*    }}*/}
+                {/*    info={additionalInfo.infoStatic({*/}
+                {/*      title: <span>Pitch deck (see <a href="#">template</a>)</span>*/}
+                {/*    })}*/}
+                {/*  />*/}
 
                 </div>
 
@@ -277,6 +277,5 @@ export default class App extends Component {
 
   constructor (props) {
     super(props)
-    console.log('qweqweqwe')
   }
 }
